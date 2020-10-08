@@ -33,12 +33,12 @@ namespace Negocio
 
                 aux.Nombre = lector.GetString(1);
                 aux.Descripcion = lector.GetString(2);
-                
+
                 aux.marca = new Marca();
-                aux.marca.Descripcion = (string)lector["Descripcion"];
+                aux.marca.Descripcion = lector.GetString(3);
 
                 aux.categoria = new Categoria();
-                aux.categoria.Descripcion = (string)lector["Descripcion"];
+                aux.categoria.Descripcion = lector.GetString(4);
 
 
                 aux.Precio = (decimal)lector["Precio"];
