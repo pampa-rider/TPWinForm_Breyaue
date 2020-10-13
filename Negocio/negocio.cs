@@ -52,33 +52,77 @@ namespace Negocio
             conexion.Close();
             return lista;
         }
-      
-    public void agregar(Articulo nuevo)
+
+        public void modificar(Articulo articulo)
+        {
+            AccesoDatos conexion = new AccesoDatos();
+            try
+            {
+                conexion.setearQuery("Update ARTICULO Set  Nombre=@nombre, Descripcion=@descripcion, IdMarca=@marca,IdCategoria=@categoria,ImagenUrl=@url, Precio=@precio, Where id=@codigo");
+                conexion.agregarParametro("@codigo",articulo.codigo);
+                conexion.agregarParametro("@Nombre", articulo.Nombre);
+                conexion.agregarParametro("@descripcion", articulo.Descripcion);
+                conexion.agregarParametro("@IdMarca", articulo.marca);
+                conexion.agregarParametro("@IdCategoria", articulo.categoria);
+                conexion.agregarParametro("@ImagenUrl", articulo.ImageUrl);
+                conexion.agregarParametro("@Precio", articulo.Precio);
+                conexion.ejecutarAccion();
+            }
+
+            catch (Exception ex)
+            { throw ex; }
+
+        }
+
+
+
+
+
+        /*
+        public void eliminar(int id)
+        {
+            AccesoDatos conexion = new AccesoDatos();
+            try
+            {
+                conexion.setearQuery("Delete from POKEMONS Where Id=@id");
+                conexion.agregarParametro("@id", id);
+                conexion.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }*/
+
+
+
+        public void agregar(Articulo nuevo)
     {
 	    try
 	    {
+                SqlConnection conexion = new SqlConnection();
+                SqlCommand comando = new SqlCommand();
+                conexion.ConnectionString = "data source=DESKTOP-PEA82KB\\SQLEXPRESS; initial catalog=CATALOGO_DB; integrated security=sspi";
+                comando.CommandType = System.Data.CommandType.Text;
 
-	    }
-        catch(Exception)
+                comando.CommandText = "insert into ARTICULOS (Nombre,Descripcion,IdMarca,IdCategoria,ImagenUrl,Precio) values('" + nuevo.Nombre + "','" + nuevo.Descripcion + "','" + nuevo.marca.Id + "','" + nuevo.categoria.Id + "','" + nuevo.ImageUrl + "','" + nuevo.Precio + "')";
+                comando.Connection = conexion;
+                conexion.Open();
+                comando.ExecuteNonQuery();
+
+
+
+            }
+            catch (Exception)
         {
         throw;
         }
 
-        SqlConnection conexion = new SqlConnection();
-        SqlCommand comando = new SqlCommand();
-        conexion.ConnectionString ="data source=DESKTOP-PEA82KB\\SQLEXPRESS; initial catalog=CATALOGO_DB; integrated security=sspi";
-        comando.CommandType = System.Data.CommandType.Text;
-        
-        comando.CommandText= "insert into ARTICULOS (Nombre,Descripcion,IdMarca,IdCategoria,ImagenUrl,Precio) values('"+nuevo.Nombre+"','"+nuevo.Descripcion+"','"+nuevo.marca.Id+"','"+nuevo.categoria.Id+"','"+nuevo.ImageUrl+"','"+nuevo.Precio+"')";
-        comando.Connection = conexion;
-        conexion.Open();
-        comando.ExecuteNonQuery();
-
+    
             
 
 
-
-        }
+       }
          
     }
 }

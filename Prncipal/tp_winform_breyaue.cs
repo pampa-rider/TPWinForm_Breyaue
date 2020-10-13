@@ -40,6 +40,7 @@ namespace Prncipal
 
         private void cmdAlta_Click(object sender, EventArgs e)
         {
+         
             frmAlta alta = new frmAlta();
             alta.ShowDialog();
             cargar();
@@ -81,6 +82,17 @@ namespace Prncipal
             {
                 MessageBox.Show(ex.ToString());
             }
+        }
+
+        private void BtnEditar_Click(object sender, EventArgs e)
+        {
+            Articulo art;
+            art = (Articulo)dgvArticulos.CurrentRow.DataBoundItem;
+
+            frmAlta mod = new frmAlta(art);
+            mod.ShowDialog();
+            cargar();
+
         }
     }
 }

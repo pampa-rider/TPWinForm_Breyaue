@@ -32,6 +32,7 @@
             this.dgvArticulos = new System.Windows.Forms.DataGridView();
             this.txtBusqueda = new System.Windows.Forms.TextBox();
             this.cmdAlta = new System.Windows.Forms.Button();
+            this.BtnEditar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pbProducto)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvArticulos)).BeginInit();
             this.SuspendLayout();
@@ -72,16 +73,27 @@
             this.cmdAlta.UseVisualStyleBackColor = true;
             this.cmdAlta.Click += new System.EventHandler(this.cmdAlta_Click);
             // 
-            // Form1
+            // BtnEditar
+            // 
+            this.BtnEditar.Location = new System.Drawing.Point(126, 415);
+            this.BtnEditar.Name = "BtnEditar";
+            this.BtnEditar.Size = new System.Drawing.Size(108, 34);
+            this.BtnEditar.TabIndex = 4;
+            this.BtnEditar.Text = "&Editar";
+            this.BtnEditar.UseVisualStyleBackColor = true;
+            this.BtnEditar.Click += new System.EventHandler(this.BtnEditar_Click);
+            // 
+            // tp_winform_breyaue
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(836, 474);
+            this.Controls.Add(this.BtnEditar);
             this.Controls.Add(this.cmdAlta);
             this.Controls.Add(this.txtBusqueda);
             this.Controls.Add(this.dgvArticulos);
             this.Controls.Add(this.pbProducto);
-            this.Name = "Form1";
+            this.Name = "tp_winform_breyaue";
             this.Text = "Catalogo";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pbProducto)).EndInit();
@@ -97,6 +109,7 @@
         private System.Windows.Forms.DataGridView dgvArticulos;
         private System.Windows.Forms.TextBox txtBusqueda;
         private System.Windows.Forms.Button cmdAlta;
+        private System.Windows.Forms.Button BtnEditar;
     }
 }
 
