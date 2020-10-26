@@ -41,7 +41,7 @@ namespace Negocio
 
         public void agregarParametro(string nombre, object valor)
         {
-            comando.Parameters.AddWithValue(nombre,valor);
+            comando.Parameters.AddWithValue(nombre, valor);
         }
 
         public void ejecutarLector()
@@ -57,8 +57,7 @@ namespace Negocio
                 throw ex;
 
             }
-            finally {conexion.Close(); 
-            }
+            finally { conexion.Close(); }
 
         }
 

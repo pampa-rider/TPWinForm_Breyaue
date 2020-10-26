@@ -33,7 +33,6 @@
             this.txtBusqueda = new System.Windows.Forms.TextBox();
             this.cmdAlta = new System.Windows.Forms.Button();
             this.BtnEditar = new System.Windows.Forms.Button();
-            this.btnEliminar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pbProducto)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvArticulos)).BeginInit();
             this.SuspendLayout();
@@ -84,22 +83,11 @@
             this.BtnEditar.UseVisualStyleBackColor = true;
             this.BtnEditar.Click += new System.EventHandler(this.BtnEditar_Click);
             // 
-            // btnEliminar
-            // 
-            this.btnEliminar.Location = new System.Drawing.Point(240, 415);
-            this.btnEliminar.Name = "btnEliminar";
-            this.btnEliminar.Size = new System.Drawing.Size(108, 34);
-            this.btnEliminar.TabIndex = 5;
-            this.btnEliminar.Text = "&Eliminar";
-            this.btnEliminar.UseVisualStyleBackColor = true;
-            this.btnEliminar.Click += new System.EventHandler(this.button1_Click);
-            // 
             // tp_winform_breyaue
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(836, 474);
-            this.Controls.Add(this.btnEliminar);
             this.Controls.Add(this.BtnEditar);
             this.Controls.Add(this.cmdAlta);
             this.Controls.Add(this.txtBusqueda);
@@ -122,7 +110,6 @@
         private System.Windows.Forms.TextBox txtBusqueda;
         private System.Windows.Forms.Button cmdAlta;
         private System.Windows.Forms.Button BtnEditar;
-        private System.Windows.Forms.Button btnEliminar;
     }
 }
 

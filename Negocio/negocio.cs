@@ -58,32 +58,33 @@ namespace Negocio
             AccesoDatos conexion = new AccesoDatos();
             try
             {
-                conexion.setearQuery("Update ARTICULOS set Nombre=@Nombre,Descripcion=@Descripcion,IdMarca=@IdMarca,IdCategoria=@IdCategoria,ImagenUrl=@imagenUrl,Precio=@Precio Where Id=@Codigo");
-                conexion.agregarParametro("@Codigo",articulo.codigo);
+                conexion.setearQuery("Update ARTICULO Set  Nombre=@nombre, Descripcion=@descripcion, IdMarca=@marca,IdCategoria=@categoria,ImagenUrl=@url, Precio=@precio, Where id=@codigo");
+                conexion.agregarParametro("@codigo",articulo.codigo);
                 conexion.agregarParametro("@Nombre", articulo.Nombre);
-                conexion.agregarParametro("@Descripcion", articulo.Descripcion);
-                conexion.agregarParametro("@IdMarca",articulo.marca.Id);
-                conexion.agregarParametro("@IdCategoria", articulo.categoria.Id);
+                conexion.agregarParametro("@descripcion", articulo.Descripcion);
+                conexion.agregarParametro("@IdMarca", articulo.marca);
+                conexion.agregarParametro("@IdCategoria", articulo.categoria);
                 conexion.agregarParametro("@ImagenUrl", articulo.ImageUrl);
                 conexion.agregarParametro("@Precio", articulo.Precio);
                 conexion.ejecutarAccion();
             }
 
             catch (Exception ex)
-            {
-            throw ex; 
-            }
+            { throw ex; }
 
         }
 
 
 
+
+
+        /*
         public void eliminar(int id)
         {
             AccesoDatos conexion = new AccesoDatos();
             try
             {
-                conexion.setearQuery("Delete from ARTICULOS Where Id=@id");
+                conexion.setearQuery("Delete from POKEMONS Where Id=@id");
                 conexion.agregarParametro("@id", id);
                 conexion.ejecutarAccion();
             }
@@ -91,7 +92,7 @@ namespace Negocio
             {
                 throw ex;
             }
-        }
+        }*/
 
 
 
