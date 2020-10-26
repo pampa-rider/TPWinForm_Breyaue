@@ -93,14 +93,13 @@ namespace Negocio
 
 
         public void agregar(Articulo nuevo)
-    {
-	    try
-	    {
+        {
+	        try
+	        {
                 SqlConnection conexion = new SqlConnection();
                 SqlCommand comando = new SqlCommand();
                 conexion.ConnectionString = "data source=DESKTOP-PEA82KB\\SQLEXPRESS; initial catalog=CATALOGO_DB; integrated security=sspi";
                 comando.CommandType = System.Data.CommandType.Text;
-
                 comando.CommandText = "insert into ARTICULOS (Nombre,Descripcion,IdMarca,IdCategoria,ImagenUrl,Precio) values('" + nuevo.Nombre + "','" + nuevo.Descripcion + "','" + nuevo.marca.Id + "','" + nuevo.categoria.Id + "','" + nuevo.ImageUrl + "','" + nuevo.Precio + "')";
                 comando.Connection = conexion;
                 conexion.Open();
