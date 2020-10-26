@@ -94,5 +94,28 @@ namespace Prncipal
             cargar();
 
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            ArticuloNegocio negocio = new ArticuloNegocio();
+
+
+
+            const string message = "Esta Seguro que quiere eliminar el registro?";
+            const string caption = "Eliminar Registro";
+            var result = MessageBox.Show(message, caption, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (result == DialogResult.Yes)
+            {
+                negocio.eliminar(((Articulo)dgvArticulos.CurrentRow.DataBoundItem).codigo);
+                cargar();
+
+            }
+        
+
+
+
+        }
+
     }
 }
