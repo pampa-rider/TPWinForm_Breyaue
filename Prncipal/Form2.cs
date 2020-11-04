@@ -53,7 +53,7 @@ namespace Prncipal
             articulo.Precio = Convert.ToDecimal(txtPrecio.Text);
             articulo.ImageUrl = txtUrl.Text;
 
-            if (articulo.codigo == 0)
+            if (articulo.id == 0)
                 negocio.agregar(articulo);
             else
                 negocio.modificar(articulo);

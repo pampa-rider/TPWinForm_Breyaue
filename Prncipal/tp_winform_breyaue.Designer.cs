@@ -63,6 +63,7 @@
             this.txtBusqueda.Size = new System.Drawing.Size(593, 20);
             this.txtBusqueda.TabIndex = 2;
             this.txtBusqueda.TextChanged += new System.EventHandler(this.txtBusqueda_TextChanged);
+            this.txtBusqueda.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBusqueda_KeyPress);
             // 
             // cmdAlta
             // 

@@ -29,7 +29,7 @@ namespace Negocio
             while (lector.Read())
             {
                 Articulo aux = new Articulo();
-                aux.codigo = (int)lector["id"]; ;
+                aux.id = (int)lector["id"]; ;
 
                 aux.Nombre = lector.GetString(1);
                 aux.Descripcion = lector.GetString(2);

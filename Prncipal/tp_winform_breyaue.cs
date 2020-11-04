@@ -35,7 +35,12 @@ namespace Prncipal
             dgvArticulos.DataSource = producto.listar();
 
             dgvArticulos.Columns[4].Visible = false;
-
+            /*
+                 dgvArticulos.Columns[0].Visible = false;
+                dgvArticulos.Columns[1].Visible = false;
+                dgvArticulos.Columns[3].Visible = false;
+                dgvArticulos.Columns[6].Visible = false;
+             */
         }
 
         private void cmdAlta_Click(object sender, EventArgs e)
@@ -61,28 +66,7 @@ namespace Prncipal
             }
         }
 
-        private void txtBusqueda_TextChanged(object sender, EventArgs e)
-        {
-            List<Articulo> Lista_Busqueda;
-            try
-            {
-                if (txtBusqueda.Text == "")
-                {
-                    Lista_Busqueda = lista;
-                }
-                else
-                {
-                    Lista_Busqueda = lista.FindAll(k => k.Nombre.ToLower().Contains(txtBusqueda.Text.ToLower()) || k.Descripcion.ToLower().Contains(txtBusqueda.Text.ToLower()));
-                }
-
-                dgvArticulos.DataSource = Lista_Busqueda;
-
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.ToString());
-            }
-        }
+       
 
         private void BtnEditar_Click(object sender, EventArgs e)
         {
@@ -107,7 +91,7 @@ namespace Prncipal
 
             if (result == DialogResult.Yes)
             {
-                negocio.eliminar(((Articulo)dgvArticulos.CurrentRow.DataBoundItem).codigo);
+                negocio.eliminar(((Articulo)dgvArticulos.CurrentRow.DataBoundItem).id);
                 cargar();
 
             }
@@ -117,5 +101,36 @@ namespace Prncipal
 
         }
 
+        private void txtBusqueda_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            
+                if (txtBusqueda.Text == "")
+                {
+                    dgvArticulos.DataSource=lista;
+                }
+                else
+                {
+                    
+                    List<Articulo> Lista_Busqueda = lista.FindAll
+                    (
+                    k => k.Nombre.ToLower().Contains(txtBusqueda.Text.ToLower())
+                    || k.Descripcion.ToLower().Contains(txtBusqueda.Text.ToLower())
+                    /*|| k.codigo.ToLower().Contains(txtBusqueda.Text.ToLower()) 
+                    || k.categoria.Descripcion.ToLower().Contains(txtBusqueda.Text.ToLower()) 
+                    || k.marca.Descripcion.ToLower().Contains(txtBusqueda.Text.ToLower())*/
+                    );
+                    
+                dgvArticulos.DataSource = Lista_Busqueda;
+
+               }
+
+
+           
+        }
+
+        private void txtBusqueda_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

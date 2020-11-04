@@ -12,6 +12,7 @@ namespace Negocio
     {
         public List<Categoria> listar()
         {
+
             SqlConnection conexion = new SqlConnection();
             SqlCommand comando = new SqlCommand();
             SqlDataReader lector;
@@ -21,9 +22,11 @@ namespace Negocio
             comando.CommandType = System.Data.CommandType.Text;
             comando.CommandText = "Select Id,Descripcion from CATEGORIAS";
             comando.Connection = conexion;
-            conexion.Open();
-            lector = comando.ExecuteReader();
 
+            conexion.Open();
+
+
+            lector = comando.ExecuteReader();
             while (lector.Read())
             {
             lista.Add(new Categoria((int)lector["Id"], (string)lector["Descripcion"]));
