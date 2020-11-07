@@ -10,8 +10,8 @@ namespace Negocio
 {
     public class ArticuloNegocio
     {
-    public List<Articulo> listar()
-    {
+        public List<Articulo> listar()
+        {
             SqlConnection conexion = new SqlConnection();
             SqlCommand comando = new SqlCommand();
             SqlDataReader lector;
@@ -19,8 +19,8 @@ namespace Negocio
 
             conexion.ConnectionString = "data source=DESKTOP-PEA82KB\\SQLEXPRESS; initial catalog=CATALOGO_DB; integrated security=sspi";
             comando.CommandType = System.Data.CommandType.Text;
-            comando.CommandText = "select P.id,P.nombre,P.descripcion,M.Descripcion,T.Descripcion,P.ImagenUrl,P.Precio from ARTICULOS P, MARCAS M, CATEGORIAS T Where P.IdCategoria=T.Id and P.IdMarca=M.Id";
-       
+            comando.CommandText = "select P.id,P.Codigo,P.nombre,P.descripcion,M.Descripcion,T.Descripcion,P.ImagenUrl,P.Precio from ARTICULOS P, MARCAS M, CATEGORIAS T Where P.IdCategoria=T.Id and P.IdMarca=M.Id";
+
             comando.Connection = conexion;
 
             conexion.Open();
@@ -30,21 +30,22 @@ namespace Negocio
             {
                 Articulo aux = new Articulo();
                 aux.id = (int)lector["id"]; ;
+                aux.codigo = lector.GetString(1);
 
-                aux.Nombre = lector.GetString(1);
-                aux.Descripcion = lector.GetString(2);
+                aux.Nombre = lector.GetString(2);
+                aux.Descripcion = lector.GetString(3);
 
                 aux.marca = new Marca();
-                aux.marca.Descripcion = lector.GetString(3);
+                aux.marca.Descripcion = lector.GetString(4);
 
                 aux.categoria = new Categoria();
-                aux.categoria.Descripcion = lector.GetString(4);
+                aux.categoria.Descripcion = lector.GetString(5);
 
 
                 aux.Precio = (decimal)lector["Precio"];
-               
-                
-                aux.ImageUrl = (string)lector["ImagenUrl"];
+
+
+                aux.ImageUrl = lector.GetString(6);
 
 
                 lista.Add(aux);
@@ -58,19 +59,20 @@ namespace Negocio
             AccesoDatos conexion = new AccesoDatos();
             try
             {
-            conexion.setearQuery("Update ARTICULOS set Nombre=@Nombre,Descripcion=@Descripcion,IdMarca=@IdMarca,IdCategoria=@IdCategoria,ImagenUrl=@imagenUrl,Precio=@Precio Where Id=@Codigo");
-            conexion.agregarParametro("@Codigo", articulo.codigo);
-            conexion.agregarParametro("@Nombre", articulo.Nombre);
-            conexion.agregarParametro("@Descripcion", articulo.Descripcion);
-            conexion.agregarParametro("@IdMarca", articulo.marca.Id);
-            conexion.agregarParametro("@IdCategoria", articulo.categoria.Id);
-            conexion.agregarParametro("@ImagenUrl", articulo.ImageUrl);
-            conexion.agregarParametro("@Precio", articulo.Precio);
-            conexion.ejecutarAccion();
+                conexion.setearQuery("Update ARTICULOS set Codigo=@Codigo, Nombre=@Nombre,Descripcion=@Descripcion,IdMarca=@IdMarca,IdCategoria=@IdCategoria,ImagenUrl=@imagenUrl,Precio=@Precio Where Id=@id");
+                conexion.agregarParametro("@Id", articulo.id);
+                conexion.agregarParametro("@Codigo", articulo.codigo);
+                conexion.agregarParametro("@Nombre", articulo.Nombre);
+                conexion.agregarParametro("@Descripcion", articulo.Descripcion);
+                conexion.agregarParametro("@IdMarca", articulo.marca.Id);
+                conexion.agregarParametro("@IdCategoria", articulo.categoria.Id);
+                conexion.agregarParametro("@ImagenUrl", articulo.ImageUrl);
+                conexion.agregarParametro("@Precio", articulo.Precio);
+                conexion.ejecutarAccion();
             }
 
             catch (Exception ex)
-                  { throw ex; }
+            { throw ex; }
 
         }
 
@@ -86,7 +88,7 @@ namespace Negocio
             }
             catch (Exception ex)
             {
-            throw ex;
+                throw ex;
             }
         }
 
@@ -94,8 +96,8 @@ namespace Negocio
 
         public void agregar(Articulo nuevo)
         {
-	        try
-	        {
+            try
+            {
                 SqlConnection conexion = new SqlConnection();
                 SqlCommand comando = new SqlCommand();
                 conexion.ConnectionString = "data source=DESKTOP-PEA82KB\\SQLEXPRESS; initial catalog=CATALOGO_DB; integrated security=sspi";
@@ -109,15 +111,15 @@ namespace Negocio
 
             }
             catch (Exception)
-        {
-        throw;
+            {
+                throw;
+            }
+
+
+
+
+
         }
 
-    
-            
-
-
-       }
-         
     }
 }

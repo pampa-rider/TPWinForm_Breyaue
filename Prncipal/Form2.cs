@@ -45,7 +45,8 @@ namespace Prncipal
                         
             Categoria cat = new Categoria();
             Marca marca = new Marca();
-
+            
+            articulo.codigo = txtCodigo.Text;
             articulo.Nombre = txtNombre.Text;
             articulo.Descripcion = txtDesc.Text;
             articulo.categoria = (Categoria)cboCategoria.SelectedItem;
@@ -79,6 +80,9 @@ namespace Prncipal
 
             if (articulo != null)
             {
+                txtCodigo.Text = articulo.codigo;
+                txtCodigo.Enabled = false;
+
                 txtNombre.Text = articulo.Nombre;
                 txtDesc.Text = articulo.Descripcion;
                 cboCategoria.SelectedIndex = articulo.categoria.Id;

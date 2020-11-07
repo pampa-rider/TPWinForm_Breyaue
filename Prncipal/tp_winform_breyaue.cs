@@ -7,7 +7,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
 using Negocio;
 using Dominio;
 
@@ -17,7 +16,7 @@ namespace Prncipal
     {
 
         private List<Articulo> lista;
-      
+
         public tp_winform_breyaue()
         {
             InitializeComponent();
@@ -32,20 +31,19 @@ namespace Prncipal
         private void cargar()
         {
             ArticuloNegocio producto = new ArticuloNegocio();
-            dgvArticulos.DataSource = producto.listar();
-
+            lista = producto.listar();
+            dgvArticulos.DataSource = lista;
             dgvArticulos.Columns[4].Visible = false;
-            /*
-                 dgvArticulos.Columns[0].Visible = false;
-                dgvArticulos.Columns[1].Visible = false;
-                dgvArticulos.Columns[3].Visible = false;
-                dgvArticulos.Columns[6].Visible = false;
-             */
+            dgvArticulos.Columns[0].Visible = false;
+            dgvArticulos.Columns[1].Visible = false;
+            dgvArticulos.Columns[3].Visible = false;
+            dgvArticulos.Columns[6].Visible = false;
+
         }
 
         private void cmdAlta_Click(object sender, EventArgs e)
         {
-         
+
             frmAlta alta = new frmAlta();
             alta.ShowDialog();
             cargar();
@@ -66,7 +64,7 @@ namespace Prncipal
             }
         }
 
-       
+
 
         private void BtnEditar_Click(object sender, EventArgs e)
         {
@@ -95,7 +93,7 @@ namespace Prncipal
                 cargar();
 
             }
-        
+
 
 
 
@@ -103,29 +101,28 @@ namespace Prncipal
 
         private void txtBusqueda_KeyPress(object sender, KeyPressEventArgs e)
         {
-            
-                if (txtBusqueda.Text == "")
-                {
-                    dgvArticulos.DataSource=lista;
-                }
-                else
-                {
-                    
-                    List<Articulo> Lista_Busqueda = lista.FindAll
-                    (
-                    k => k.Nombre.ToLower().Contains(txtBusqueda.Text.ToLower())
-                    || k.Descripcion.ToLower().Contains(txtBusqueda.Text.ToLower())
-                    /*|| k.codigo.ToLower().Contains(txtBusqueda.Text.ToLower()) 
-                    || k.categoria.Descripcion.ToLower().Contains(txtBusqueda.Text.ToLower()) 
-                    || k.marca.Descripcion.ToLower().Contains(txtBusqueda.Text.ToLower())*/
-                    );
-                    
+
+            if (txtBusqueda.Text == "")
+            {
+                dgvArticulos.DataSource = lista;
+            }
+            else
+            {
+
+                List<Articulo> Lista_Busqueda = lista.FindAll
+                (
+                k => k.Nombre.ToLower().Contains(txtBusqueda.Text.ToLower())
+                || k.Descripcion.ToLower().Contains(txtBusqueda.Text.ToLower())
+                || k.codigo.ToLower().Contains(txtBusqueda.Text.ToLower())
+                || k.categoria.Descripcion.ToLower().Contains(txtBusqueda.Text.ToLower())
+                || k.marca.Descripcion.ToLower().Contains(txtBusqueda.Text.ToLower())
+                );
+
                 dgvArticulos.DataSource = Lista_Busqueda;
 
-               }
+            }
 
 
-           
         }
 
         private void txtBusqueda_TextChanged(object sender, EventArgs e)
